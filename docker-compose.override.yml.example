@@ -1,0 +1,6 @@
+services:
+  web:
+    environment:
+      CLIENT_ID: "TODO"
+      CLIENT_SECRET: "TODO"
+version: "3.6"

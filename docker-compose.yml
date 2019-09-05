@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    environment:
+      APPLICATION_ENV: dev
+      OAUTHLIB_INSECURE_TRANSPORT: 1
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/var/www
+version: "3.6"

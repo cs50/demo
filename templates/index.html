@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>demo</title>
+    </head>
+    <body>
+        {% if session.get("jwt_payload") %}
+            <pre>{{ session.get("jwt_payload") }}</pre>
+        {% else %}
+            You are not logged in. <a href="/login">Log in</a>.
+        {% endif %}
+    </body>
+</html>
