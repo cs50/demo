@@ -1,3 +1,5 @@
+# https://manage.auth0.com/dashboard/us/cs50/applications/7DoKCwuk9LlkwUIY0ufkQ2dqMjaatuNI/quickstart
+
 import os
 
 from authlib.flask.client import OAuth
