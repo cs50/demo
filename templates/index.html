@@ -6,9 +6,17 @@
     </head>
     <body>
         {% if session.get("jwt_payload") %}
-            <pre>{{ session.get("jwt_payload") }}</pre>
+            <p>
+                You are logged in:
+            </p>
+            <pre>{{ session.get("jwt_payload") | pprint }}</pre>
+            <p>
+                <a href="/logout">Log out</a>.
+            </p>
         {% else %}
-            You are not logged in. <a href="/login">Log in</a>.
+            <p>
+                You are not logged in. <a href="/login">Log in</a>.
+            </p>
         {% endif %}
     </body>
 </html>
