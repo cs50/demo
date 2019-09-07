@@ -28,8 +28,8 @@ auth0 = oauth.register(
     access_token_url="https://cs50.auth0.com/oauth/token",
     api_base_url="https://cs50.auth0.com",
     authorize_params={
-        "connection": "harvard",
-        "prompt": "login",
+        "connection": "harvard",  # Automatically select harvard
+        "prompt": "login"  # Force login
     },
     authorize_url="https://cs50.auth0.com/authorize",
     client_id=os.environ.get("CLIENT_ID"),
