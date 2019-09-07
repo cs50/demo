@@ -5,11 +5,11 @@
         <title>demo</title>
     </head>
     <body>
-        {% if session.get("jwt_payload") %}
+        {% if session.get("userinfo") %}
             <p>
                 You are logged in:
             </p>
-            <pre>{{ session.get("jwt_payload") | pprint }}</pre>
+            <pre>{{ session.get("userinfo") | pprint }}</pre>
             <p>
                 <a href="/logout">Log out</a>.
             </p>

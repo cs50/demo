@@ -27,6 +27,10 @@ auth0 = oauth.register(
     "auth0",
     access_token_url="https://cs50.auth0.com/oauth/token",
     api_base_url="https://cs50.auth0.com",
+    authorize_params={
+        "connection": "harvard",
+        "prompt": "login",
+    },
     authorize_url="https://cs50.auth0.com/authorize",
     client_id=os.environ.get("CLIENT_ID"),
     client_kwargs={
@@ -45,7 +49,7 @@ def index():
 # GET /login
 @app.route("/login")
 def login():
-    return auth0.authorize_redirect(redirect_uri=url_for("redirect_uri", _external=True), audience="https://cs50.auth0.com/userinfo")
+    return auth0.authorize_redirect(redirect_uri=url_for("redirect_uri", _external=True))
 
 
 # GET /logout
@@ -59,5 +63,5 @@ def logout():
 @app.route("/redirect_uri")
 def redirect_uri():
     auth0.authorize_access_token()
-    session["jwt_payload"] = auth0.get("userinfo").json()
+    session["userinfo"] = auth0.get("userinfo").json()
     return redirect(url_for("index"))
