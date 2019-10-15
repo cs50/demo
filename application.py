@@ -1,5 +1,6 @@
 # https://manage.auth0.com/dashboard/us/cs50/applications/7DoKCwuk9LlkwUIY0ufkQ2dqMjaatuNI/quickstart
 
+import json
 import os
 
 from authlib.flask.client import OAuth
@@ -43,7 +44,7 @@ auth0 = oauth.register(
 # GET /
 @app.route("/", methods=["GET"])
 def index():
-    return render_template("index.html")
+    return render_template("index.html", userinfo=json.dumps(session.get("userinfo"), indent=2) if session.get("userinfo") else None)
 
 
 # GET /login

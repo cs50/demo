@@ -5,11 +5,11 @@
         <title>demo</title>
     </head>
     <body>
-        {% if session.get("userinfo") %}
+        {% if userinfo %}
             <p>
                 You are logged in:
             </p>
-            <pre>{{ session.get("userinfo") | pprint }}</pre>
+            <pre>{{ userinfo }}</pre>
             <p>
                 <a href="/logout">Log out</a>.
             </p>
