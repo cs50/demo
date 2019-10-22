@@ -1,4 +1,4 @@
-# https://manage.auth0.com/dashboard/us/id50/applications/7DoKCwuk9LlkwUIY0ufkQ2dqMjaatuNI/quickstart
+# https://manage.auth0.com/dashboard/us/cs50/applications/7DoKCwuk9LlkwUIY0ufkQ2dqMjaatuNI/quickstart
 
 import json
 import os
@@ -26,20 +26,23 @@ Session(app)
 # Configure Authlib
 auth0 = oauth.register(
     "auth0",
-    access_token_url="https://id50.auth0.com/oauth/token",
-    api_base_url="https://id50.auth0.com",
+    access_token_url="https://cs50.auth0.com/oauth/token",
+    api_base_url="https://cs50.auth0.com",
     authorize_params={
         #"connection": "harvard",  # Automatically select harvard
         #"prompt": "login"  # Force login
     },
-    authorize_url="https://id50.auth0.com/authorize",
+    authorize_url="https://cs50.auth0.com/authorize",
     client_id=os.environ.get("CLIENT_ID"),
     client_kwargs={
-        "scope": "openid profile email harvardEduIDNumber eduPersonScopedAffiliation"
+        "scope": "openid profile email eduPersonScopedAffiliation geoip harvardEduIDNumber harvardEduNetID"
     },
     client_secret=os.environ.get("CLIENT_SECRET")
 )
 
+@app.route("/temp")
+def temp():
+    return render_template("temp.html")
 
 # GET /
 @app.route("/", methods=["GET"])
