@@ -3,7 +3,7 @@
 import json
 import os
 
-from authlib.flask.client import OAuth
+from authlib.integrations.flask_client import OAuth
 from flask import Flask, abort, redirect, render_template, session, url_for
 from flask_session import Session
 from werkzeug import security
@@ -37,7 +37,8 @@ auth0 = oauth.register(
     client_kwargs={
         "scope": "openid profile email affiliation geoip huid netid courses"
     },
-    client_secret=os.environ.get("CLIENT_SECRET")
+    client_secret=os.environ.get("CLIENT_SECRET"),
+    jwks_uri="https://cs50.auth0.com/.well-known/jwks.json"
 )
 
 @app.route("/temp")
@@ -66,6 +67,8 @@ def logout():
 # GET /redirect_uri
 @app.route("/redirect_uri")
 def redirect_uri():
-    auth0.authorize_access_token()
+    token = auth0.authorize_access_token()
+    print(token)
+    print(auth0.parse_id_token(token))
     session["userinfo"] = auth0.get("userinfo").json()
     return redirect(url_for("index"))
