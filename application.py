@@ -35,7 +35,7 @@ auth0 = oauth.register(
     authorize_url="https://cs50.auth0.com/authorize",
     client_id=os.environ.get("CLIENT_ID"),
     client_kwargs={
-        "scope": "openid profile email eduPersonScopedAffiliation geoip harvardEduIDNumber harvardEduNetID courses"
+        "scope": "openid profile email affiliation geoip huid netid courses"
     },
     client_secret=os.environ.get("CLIENT_SECRET")
 )
